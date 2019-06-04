@@ -13,3 +13,18 @@ D:\Github\KIP\Course 4\Криптографическое приложение �
 D:\Github\KIP\Course 4\Криптографическое приложение на C# (диплом)\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.csproj.CoreCompileInputs.cache
 D:\Github\KIP\Course 4\Криптографическое приложение на C# (диплом)\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.exe
 D:\Github\KIP\Course 4\Криптографическое приложение на C# (диплом)\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.pdb
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\bin\Debug\CryptographicApplication.exe.config
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\bin\Debug\CryptographicApplication.exe
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\bin\Debug\CryptographicApplication.pdb
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.csprojAssemblyReference.cache
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\MainWindow.g.cs
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\App.g.cs
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication_MarkupCompile.cache
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication_MarkupCompile.lref
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\MainWindow.baml
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.g.resources
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.Properties.Resources.resources
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.csproj.GenerateResource.cache
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.csproj.CoreCompileInputs.cache
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.exe
+D:\Github\CryptographicApplication\CryptographicApplication\CryptographicApplication\obj\Debug\CryptographicApplication.pdb

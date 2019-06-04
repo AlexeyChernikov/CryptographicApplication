@@ -2,47 +2,81 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Numerics;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
+using System.Diagnostics;
 namespace CryptographicApplication
 {
     class RSA
     {
         Alphabet alph = new Alphabet();
 
-        public string Encrypt(string sourcetext, string key_p, string key_q) //генерация ключа
+        private int[] key = null;
+
+        public void SetKey(int[] _key)
+        {
+            key = new int[_key.Length];
+
+            for (int i = 0; i < _key.Length; i++)
+                key[i] = _key[i];
+        }
+
+        public void SetKey(string[] _key)
+        {
+            key = new int[_key.Length];
+
+            for (int i = 0; i < _key.Length; i++)
+                key[i] = Convert.ToInt32(_key[i]);
+        }
+
+        public void SetKey(string _key)
+        {
+            SetKey(_key.Split(' '));
+        }
+
+        public string Encrypt(string sourcetext) //генерация ключа
         {
             StringBuilder code = new StringBuilder();
 
-            int p = Convert.ToInt32(key_p);
-            int q = Convert.ToInt32(key_q);
+            long e = Convert.ToInt64(key[0]);
+            long n = Convert.ToInt64(key[1]);
 
-            if (IsTheNumberSimple(p) && IsTheNumberSimple(q))
-            {
-                int n = p * q;
-                int fi = (p - 1) * (q - 1);
-                int e = Calculate_e(fi);
-                int d = Calculate_d(e, fi);
+            MessageBox.Show(Convert.ToString(key[0]));
+            MessageBox.Show(Convert.ToString(key[1]));
 
-                List<string> result = RSA_Endoce(sourcetext, e, n);
+            List<string> result = RSA_Endoce(sourcetext, e, n);
 
-                foreach (string item in result)
-                    code.Append(item + "\n");
-            }
+            foreach (string item in result)
+                code.Append(item + "\n");
 
             return code.ToString();
         }
 
-        public string Decrypt(List<string> sourcetext, string key_d, string key_n)
+        public string Decrypt(List<string> sourcetext)
         {
             StringBuilder code = new StringBuilder();
 
-            long d = Convert.ToInt64(key_d);
-            long n = Convert.ToInt64(key_n);
+            long d = Convert.ToInt64(key[0]);
+            long n = Convert.ToInt64(key[1]);
 
-            string result = RSA_Dedoce(sourcetext, d, n);
+            code.Append(RSA_Dedoce(sourcetext, d, n));
 
-            return result;
-        } //изменить
+            return code.ToString();
+        }
 
         private List<string> RSA_Endoce(string sourcetext, long e, long n) //шифрование
         {
@@ -112,9 +146,9 @@ namespace CryptographicApplication
             return true;
         }
 
-        public int Calculate_e(int fi) //вычисление открытой экспоненты
+        public long Calculate_e(long fi) //вычисление открытой экспоненты
         {
-            int e = 2;
+            long e = 2;
 
             for (int i = 2; i <= fi; i++)
                 if ((fi % i == 0) && (e % i == 0) && e < fi) //если имеют общие делители
@@ -126,9 +160,9 @@ namespace CryptographicApplication
             return e;
         }
 
-        public int Calculate_d(int e, int fi) //вычисление закрытой экспоненты 
+        public long Calculate_d(long e, long fi) //вычисление закрытой экспоненты 
         {
-            int d = 2;
+            long d = 2;
 
             while (true)
             {

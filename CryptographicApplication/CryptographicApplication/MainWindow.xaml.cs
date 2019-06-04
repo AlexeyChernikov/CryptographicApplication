@@ -105,16 +105,18 @@ namespace CryptographicApplication
 
         public void RSA_Cipher()
         {
+            rsa_obj.SetKey(tb_Key.Text);
+
             if (rb_Encryption.IsChecked == true)
             {
-                tb_EncryptedData.Text = rsa_obj.Encrypt(tb_SourceData.Text, tb_Key.Text, tb_Key.Text);
+                tb_EncryptedData.Text = rsa_obj.Encrypt(tb_SourceData.Text);
             }
             else
             {
-                String[] s = tb_SourceData.Text.Split(new String[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                String[] s = tb_SourceData.Text.Split(new String[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 List<string> sourcetext = new List<string>(s);
 
-                tb_EncryptedData.Text = rsa_obj.Decrypt(sourcetext, tb_Key.Text, tb_Key.Text);
+                tb_EncryptedData.Text = rsa_obj.Decrypt(sourcetext);
             }
         }
 
@@ -620,10 +622,10 @@ namespace CryptographicApplication
                     tb_Public_Key.Foreground = Brushes.Black;
                     tb_Privat_Key.Foreground = Brushes.Black;
 
-                    int n = Convert.ToInt32(tb_Key_P.Text) * Convert.ToInt32(tb_Key_Q.Text);
-                    int fi = (Convert.ToInt32(tb_Key_P.Text) - 1) * (Convert.ToInt32(tb_Key_Q.Text) - 1);
-                    int e = rsa_obj.Calculate_e(fi);
-                    int d = rsa_obj.Calculate_d(e, fi);
+                    long n = Convert.ToInt32(tb_Key_P.Text) * Convert.ToInt32(tb_Key_Q.Text);
+                    long fi = (Convert.ToInt32(tb_Key_P.Text) - 1) * (Convert.ToInt32(tb_Key_Q.Text) - 1);
+                    long e = rsa_obj.Calculate_e(fi);
+                    long d = rsa_obj.Calculate_d(e, fi);
 
                     tb_Public_Key.Text = Convert.ToString(e) + " " + Convert.ToString(n);
                     tb_Privat_Key.Text = Convert.ToString(d) + " " + Convert.ToString(n);
