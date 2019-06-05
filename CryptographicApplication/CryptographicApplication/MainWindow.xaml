@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptographicApplication"
         mc:Ignorable="d"
-        Title="Криптографическое приложение" Height="668" Width="538" WindowStartupLocation="CenterScreen" Icon="logo.png" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Криптографическое приложение" Height="737" Width="538" WindowStartupLocation="CenterScreen" Icon="logo.png" ResizeMode="NoResize" KeyDown="Window_KeyDown" Closing="Window_Closing" Background="#FFF0F0F0" FontFamily="Times New Roman" FontSize="14">
     <Grid>
-        <Menu Height="25" VerticalAlignment="Top">
+        <Menu Height="25" VerticalAlignment="Top" Background="#FFDDDDDD" FontFamily="Times New Roman" FontSize="14" Grid.ColumnSpan="2">
             <MenuItem Header="Файл">
                 <MenuItem x:Name="menu_btn_ExecuteOperation" Header="Выполнить" InputGestureText="  F1" Click="Menu_btn_ExecuteOperation_Click"/>
                 <MenuItem x:Name="menu_btn_Refresh" Header="Обновить" Click="Menu_btn_Refresh_Click" InputGestureText="  F2"/>
@@ -34,35 +34,75 @@
                 <MenuItem x:Name="menu_btn_About_the_Program" Header="О программе" InputGestureText="F11" Click="Menu_btn_About_the_Program_Click"/>
             </MenuItem>
         </Menu>
-        <GroupBox Header="Исходные данные" HorizontalAlignment="Left" Height="172" Margin="13,158,0,0" VerticalAlignment="Top" Width="495">
+        <GroupBox Header="Исходные данные" HorizontalAlignment="Left" Height="172" Margin="13,158,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <Grid Margin="0,6,7,2">
-                <TextBox x:Name="tb_FileName_Source" Margin="45,0,3,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" TextChanged="Tb_FileName_Source_TextChanged" IsEnabled="False"/>
-                <Button x:Name="btn_FileSelection_Source" Content=". . ." HorizontalAlignment="Left" Height="25" Margin="10,0,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.567,-0.9" Click="Btn_FileSelection_Source_Click"/>
-                <TextBox x:Name="tb_SourceData" Margin="10,30,3,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top"/>
-                <Button x:Name="btn_Clear_Source" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,110,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Source_Click"/>
-                <Button x:Name="btn_Increase_Source" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,110,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Source_Click"/>
-                <Button x:Name="btn_Reduce_Source" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,110,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Source_Click"/>
-                <Button x:Name="btn_SaveFile_Source" Content="Сохранить" HorizontalAlignment="Left" Height="25" Margin="10,110,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFile_Source_Click" IsEnabled="False"/>
-                <Button x:Name="btn_SaveFileAs_Source" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="125,110,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Source_Click"/>
+                <TextBox x:Name="tb_FileName_Source" Margin="45,0,3,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" TextChanged="Tb_FileName_Source_TextChanged" IsEnabled="False" VerticalContentAlignment="Center"/>
+                <Button x:Name="btn_FileSelection_Source" Content=". . ." HorizontalAlignment="Left" Height="25" Margin="10,0,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.567,-0.9" Click="Btn_FileSelection_Source_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выбрать файл"/>
+                    </Button.ToolTip>
+                </Button>
+                <TextBox x:Name="tb_SourceData" Margin="10,30,3,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top" TextChanged="Tb_SourceData_TextChanged"/>
+                <Button x:Name="btn_Clear_Source" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,110,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Source_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Очистить поле с исходным текстом"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button x:Name="btn_Increase_Source" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,110,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Source_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер текста"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button x:Name="btn_Reduce_Source" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,110,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Source_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер текста"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button x:Name="btn_SaveFile_Source" Content="Сохранить" HorizontalAlignment="Left" Height="25" Margin="10,110,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFile_Source_Click" IsEnabled="False">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сохранить исходный текст"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button x:Name="btn_SaveFileAs_Source" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="125,110,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Source_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сохранить текст в новый файл"/>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
         </GroupBox>
-        <Button x:Name="btn_ExecuteOperation" Content="Выполнить" HorizontalAlignment="Left" Height="25" Margin="221,590,0,0" VerticalAlignment="Top" Width="91" Click="Btn_ExecuteOperation_Click"/>
-        <GroupBox Header="Результат" HorizontalAlignment="Left" Height="143" Margin="13,337,0,0" VerticalAlignment="Top" Width="495">
+        <Button x:Name="btn_ExecuteOperation" Content="Выполнить" HorizontalAlignment="Left" Height="30" Margin="206,653,0,0" VerticalAlignment="Top" Width="120" Click="Btn_ExecuteOperation_Click" FontSize="16" Grid.ColumnSpan="2"/>
+        <GroupBox Header="Результат" HorizontalAlignment="Left" Height="143" Margin="13,337,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <Grid Margin="0,6,-2,2">
                 <TextBox x:Name="tb_EncryptedData" Margin="10,0,12,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top"/>
-                <Button x:Name="btn_Clear_Encrypted" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,80,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Encrypted_Click"/>
-                <Button x:Name="btn_Increase_Encrypted" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,80,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Encrypted_Click"/>
-                <Button x:Name="btn_Reduce_Encrypted" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,80,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Encrypted_Click"/>
-                <Button x:Name="btn_SaveFileAs_Encrypted" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="10,80,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Encrypted_Click"/>
+                <Button x:Name="btn_Clear_Encrypted" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,80,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Encrypted_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Очистить поле с результатом"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button x:Name="btn_Increase_Encrypted" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,80,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Encrypted_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер текста"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button x:Name="btn_Reduce_Encrypted" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,80,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Encrypted_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер текста"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button x:Name="btn_SaveFileAs_Encrypted" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="10,80,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Encrypted_Click">
+                    <Button.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сохранить результат в новый файл"/>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Операция" HorizontalAlignment="Left" Height="56" Margin="13,31,0,0" VerticalAlignment="Top" Width="495">
+        <GroupBox Header="Операция" HorizontalAlignment="Left" Height="56" Margin="13,31,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <Grid Margin="0,0,-2,4">
-                <RadioButton x:Name="rb_Encryption" Content="Шифрование" HorizontalAlignment="Left" Height="15" Margin="107,10,0,0" VerticalAlignment="Top" Width="110" Checked="Rb_Encryption_Checked"/>
-                <RadioButton x:Name="rb_Decryption" Content="Дешифрование" HorizontalAlignment="Left" Height="15" Margin="272,10,0,0" VerticalAlignment="Top" Width="110" Checked="Rb_Decryption_Checked"/>
+                <RadioButton x:Name="rb_Encryption" Content="Шифрование" HorizontalAlignment="Left" Height="15" Margin="107,9,0,0" VerticalAlignment="Top" Width="110" Checked="Rb_Encryption_Checked"/>
+                <RadioButton x:Name="rb_Decryption" Content="Дешифрование" HorizontalAlignment="Left" Height="15" Margin="272,9,0,0" VerticalAlignment="Top" Width="110" Checked="Rb_Decryption_Checked"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Способ шифрования" HorizontalAlignment="Left" Height="61" Margin="13,92,0,0" VerticalAlignment="Top" Width="495">
+        <GroupBox x:Name="gb_algs" Header="Способ шифрования" HorizontalAlignment="Left" Height="61" Margin="13,92,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <Grid Margin="0,0,-2,4">
 
                 <Border x:Name="cb_Algorithms_Border" BorderThickness="0" HorizontalAlignment="Left" Height="27" Margin="8,4,0,0" VerticalAlignment="Top" Width="465">
@@ -77,34 +117,96 @@
                 </Border>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Ключ" HorizontalAlignment="Left" Height="93" Margin="13,485,0,0" VerticalAlignment="Top" Width="495">
+        <GroupBox Header="Ключ" HorizontalAlignment="Left" Height="93" Margin="13,485,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <StackPanel Margin="0,0,-2,1">
                 <Grid x:Name="Grid_Main_Key_Menu" Margin="0,6,0,0" Height="63" VerticalAlignment="Top" Visibility="Visible">
-                    <Button x:Name="btn_FileSelection_Key" Content=". . ." HorizontalAlignment="Left" Height="25" Margin="10,0,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.567,-0.9" Click="Btn_FileSelection_Key_Click"/>
+                    <Button x:Name="btn_FileSelection_Key" Content=". . ." HorizontalAlignment="Left" Height="25" Margin="10,0,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.567,-0.9" Click="Btn_FileSelection_Key_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выбрать файл"/>
+                        </Button.ToolTip>
+                    </Button>
                     <TextBox x:Name="tb_Key" Margin="45,0,12,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" TextChanged="Tb_Key_TextChanged"/>
-                    <Button x:Name="btn_SaveFileAs_Key" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Key_Click"/>
-                    <Button x:Name="btn_Key_Generation" Content="Сгенерировать ключ" HorizontalAlignment="Left" Height="25" Margin="125,30,0,0" VerticalAlignment="Top" Width="145" IsEnabled="False" Click="Btn_Key_Generation_Click"/>
-                    <Button x:Name="btn_Clear_Key" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,30,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Key_Click"/>
-                    <Button x:Name="btn_Increase_Key" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,30,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Key_Click"/>
-                    <Button x:Name="btn_Reduce_Key" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,30,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Key_Click"/>
+                    <Button x:Name="btn_SaveFileAs_Key" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Key_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сохранить ключ в новый файл"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_Key_Generation" Content="Сгенерировать ключ" HorizontalAlignment="Left" Height="25" Margin="125,30,0,0" VerticalAlignment="Top" Width="145" IsEnabled="False" Click="Btn_Key_Generation_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сгенерировать случайный ключ"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_Clear_Key" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,30,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Key_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Очистить поле с ключом"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_Increase_Key" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,30,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Key_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер текста"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_Reduce_Key" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,30,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Key_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер текста"/>
+                        </Button.ToolTip>
+                    </Button>
                 </Grid>
                 <Grid x:Name="Grid_Generation_Key_Menu_1" Margin="0,6,0,0" Height="63" VerticalAlignment="Top" Visibility="Collapsed">
                     <TextBox x:Name="tb_Key_Size" Margin="10,0,246,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Введите размер ключа" PreviewMouseDown="Tb_Key_Size_PreviewMouseDown" Foreground="#FFABADB3" LostFocus="Tb_Key_Size_LostFocus" PreviewKeyDown="Tb_Key_Size_PreviewKeyDown" PreviewTextInput="Tb_Key_Size_PreviewTextInput" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLength="4" TextChanged="Tb_Key_Size_TextChanged"/>
                     <TextBox x:Name="tb_Key_1" Margin="244,0,12,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Ваш ключ" Foreground="#FFABADB3" PreviewMouseDown="Tb_Key_1_PreviewMouseDown" LostFocus="Tb_Key_1_LostFocus" PreviewKeyDown="Tb_Key_1_PreviewKeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Tb_Key_1_TextChanged"/>
-                    <Button x:Name="btn_Backward" Content="Назад" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_Backward_Click"/>
-                    <Button x:Name="btn_OK" Content="Ок" HorizontalAlignment="Left" Height="25" Margin="363,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_OK_Click" IsEnabled="False"/>
-                    <Button x:Name="btn_Key_Generation_1" Content="Сгенерировать ключ" HorizontalAlignment="Left" Height="25" Margin="169,30,0,0" VerticalAlignment="Top" Width="145" Click="Btn_Key_Generation_1_Click"/>
+                    <Button x:Name="btn_Backward" Content="Назад" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_Backward_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Вернуться назад"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_OK" Content="Ок" HorizontalAlignment="Left" Height="25" Margin="363,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_OK_Click" IsEnabled="False">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Воспользоваться сгенерированным ключом"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_Key_Generation_1" Content="Сгенерировать ключ" HorizontalAlignment="Left" Height="25" Margin="169,30,0,0" VerticalAlignment="Top" Width="145" Click="Btn_Key_Generation_1_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сгенерировать случайный ключ"/>
+                        </Button.ToolTip>
+                    </Button>
                 </Grid>
                 <Grid x:Name="Grid_Generation_Key_Menu_2" Margin="0,6,0,0" Height="63" VerticalAlignment="Top" Visibility="Collapsed">
-                    <TextBox x:Name="tb_Key_P" Margin="10,0,391,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Введите P" PreviewMouseDown="Tb_Key_P_PreviewMouseDown" Foreground="#FFABADB3" LostFocus="Tb_Key_P_LostFocus" PreviewKeyDown="Tb_Key_P_PreviewKeyDown" PreviewTextInput="Tb_Key_P_PreviewTextInput" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLength="4" TextChanged="Tb_Key_P_TextChanged"/>
+                    <TextBox x:Name="tb_Key_P" Margin="10,0,391,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Введите P" PreviewMouseDown="Tb_Key_P_PreviewMouseDown" Foreground="#FFABADB3" LostFocus="Tb_Key_P_LostFocus" PreviewKeyDown="Tb_Key_P_PreviewKeyDown" PreviewTextInput="Tb_Key_P_PreviewTextInput" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLength="4" TextChanged="Tb_Key_P_TextChanged">
+                        <TextBox.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="P должно:&#xA; - быть простым числом;&#xA; - быть больше 10;&#xA; - быть отличным от Q."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <TextBox x:Name="tb_Public_Key" Margin="188,0,157,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Ваш открытый ключ" Foreground="#FFABADB3" PreviewMouseDown="Tb_Public_Key_PreviewMouseDown" LostFocus="Tb_Public_Key_LostFocus" PreviewKeyDown="Tb_Public_Key_PreviewKeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Tb_Public_Key_TextChanged"/>
-                    <Button x:Name="btn_Backward_1" Content="Назад" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_Backward_1_Click"/>
-                    <Button x:Name="btn_OK_1" Content="Ок" HorizontalAlignment="Left" Height="25" Margin="363,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_OK_1_Click" IsEnabled="False"/>
-                    <Button x:Name="btn_Key_Generation_2" Content="Сгенерировать ключ" HorizontalAlignment="Left" Height="25" Margin="169,30,0,0" VerticalAlignment="Top" Width="145" Click="Btn_Key_Generation_2_Click"/>
-                    <TextBox x:Name="tb_Key_Q" Margin="99,0,302,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Введите Q" PreviewMouseDown="Tb_Key_Q_PreviewMouseDown" Foreground="#FFABADB3" LostFocus="Tb_Key_Q_LostFocus" PreviewKeyDown="Tb_Key_Q_PreviewKeyDown" PreviewTextInput="Tb_Key_Q_PreviewTextInput" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLength="4" TextChanged="Tb_Key_Q_TextChanged"/>
+                    <Button x:Name="btn_Backward_1" Content="Назад" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_Backward_1_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Вернуться назад"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_OK_1" Content="Ок" HorizontalAlignment="Left" Height="25" Margin="363,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_OK_1_Click" IsEnabled="False">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Воспользоваться сгенерированным ключом"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btn_Key_Generation_2" Content="Сгенерировать ключ" HorizontalAlignment="Left" Height="25" Margin="169,30,0,0" VerticalAlignment="Top" Width="145" Click="Btn_Key_Generation_2_Click">
+                        <Button.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сгенерировать открытый и закрытый ключи"/>
+                        </Button.ToolTip>
+                    </Button>
+                    <TextBox x:Name="tb_Key_Q" Margin="99,0,302,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Введите Q" PreviewMouseDown="Tb_Key_Q_PreviewMouseDown" Foreground="#FFABADB3" LostFocus="Tb_Key_Q_LostFocus" PreviewKeyDown="Tb_Key_Q_PreviewKeyDown" PreviewTextInput="Tb_Key_Q_PreviewTextInput" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLength="4" TextChanged="Tb_Key_Q_TextChanged">
+                        <TextBox.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Q должно:&#xA; - быть простым числом;&#xA; - быть больше 10;&#xA; - быть отличным от P."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <TextBox x:Name="tb_Privat_Key" Margin="333,0,12,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Text="Ваш закрытый ключ" Foreground="#FFABADB3" PreviewMouseDown="Tb_Privat_Key_PreviewMouseDown" LostFocus="Tb_Privat_Key_LostFocus" PreviewKeyDown="Tb_Privat_Key_PreviewKeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Tb_Privat_Key_TextChanged"/>
                 </Grid>
             </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Дополнительные действия" HorizontalAlignment="Left" Height="56" Margin="13,583,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
+            <Grid Margin="0,0,-2,4">
+                <CheckBox x:Name="chb_SaveText" Content="Сохранить зашифрованный текст" HorizontalAlignment="Left" Height="19" Margin="215,8,0,0" VerticalAlignment="Top" Width="223" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <CheckBox x:Name="chb_SaveKey" Content="Сохранить ключ" HorizontalAlignment="Left" Height="19" Margin="51,8,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>

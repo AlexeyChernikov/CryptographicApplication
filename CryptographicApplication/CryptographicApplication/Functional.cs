@@ -5,6 +5,7 @@ using System.IO;
 using Microsoft.Win32;
 using System.Windows.Media;
 using System.Windows.Input;
+using System.Windows;
 
 namespace CryptographicApplication
 {
@@ -118,6 +119,32 @@ namespace CryptographicApplication
             }
         }
 
+        public void Save_File_As(ComboBox cb, TextBox TextToSave, bool a) // для открытого и закрытого ключей
+        {
+            SaveFileDialog saveFileDlg = new SaveFileDialog();
+
+            saveFileDlg.DefaultExt = ".txt";
+            saveFileDlg.Filter = "Текстовый документ (.txt) | * .txt";
+            saveFileDlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (a == true)
+            {
+                saveFileDlg.FileName = "Открытый ключ (способ - " + cb.Text + ")";
+            }
+            else
+            {
+                saveFileDlg.FileName = "Закрытый ключ (способ - " + cb.Text + ")";
+            }
+            
+
+            Nullable<bool> result = saveFileDlg.ShowDialog();
+
+            if (result == true)
+            {
+                File.WriteAllText(saveFileDlg.FileName, TextToSave.Text, Encoding.Default);
+            }
+        }
+
         public void Changed_File_Name_TB(TextBox ChangedTB, Button BtnUsed, MenuItem MIUsed)
         {
             if (ChangedTB.Text == "")
@@ -197,6 +224,38 @@ namespace CryptographicApplication
                 a.BorderBrush = Brushes.Red;
                 return 0;
             }
+        }
+
+        public bool Confirm_Action(int a) //подтверждение выхода или сохранения файла
+        {
+            bool choice = false;
+
+            switch (a)
+            {
+                case 0:
+                    if (MessageBox.Show("Вы хотите сохранить ключ?", "Сохранить ключ?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        choice = true;
+                    }
+                    else
+                    {
+                        choice = false;
+                    }
+                    break;
+
+                case 1:
+                    if (MessageBox.Show("Вы хотите сохранить ключи?", "Сохранить ключи?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        choice = true;
+                    }
+                    else
+                    {
+                        choice = false;
+                    }
+                    break;
+            }
+
+            return choice;           
         }
     }
 }
