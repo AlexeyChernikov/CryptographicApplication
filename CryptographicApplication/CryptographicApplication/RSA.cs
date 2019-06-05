@@ -101,7 +101,8 @@ namespace CryptographicApplication
         private string RSA_Dedoce(List<string> sourcetext, long d, long n) //дешифрование
         {
             string result = "";
-
+            int i = 0;
+            
             BigInteger bi;
 
             foreach (string item in sourcetext)
@@ -117,11 +118,21 @@ namespace CryptographicApplication
 
                 if (index == -1)
                 {
-                    result += " ";
+                    if (i < 1)
+                    {
+                        result += " ";
+                        i++;
+                    }
+                    else
+                    {
+                        result += "\n";
+                        i = 0;
+                    }
                 }
                 else
                 {
                     result += alph.lang[index].ToString();
+                    i = 0;
                 }
             }
 

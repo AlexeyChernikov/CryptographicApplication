@@ -294,6 +294,7 @@ namespace CryptographicApplication
             transition = false;
 
             Grid_Main_Key_Menu.Visibility = Visibility.Visible;
+            menu_btn_SaveFileAs_Key.IsEnabled = true;
 
             tb_Key_Size.Text = "";
             tb_Key_1.Text = "";
@@ -308,6 +309,7 @@ namespace CryptographicApplication
             transition = false;
 
             Grid_Main_Key_Menu.Visibility = Visibility.Visible;
+            menu_btn_SaveFileAs_Key.IsEnabled = true;
 
             tb_Key.Text = tb_Key_1.Text;
             tb_Key_Size.Text = "";
@@ -391,6 +393,7 @@ namespace CryptographicApplication
             transition = false;
 
             Grid_Main_Key_Menu.Visibility = Visibility.Visible;
+            menu_btn_SaveFileAs_Key.IsEnabled = true;
 
             tb_Key_P.Text = "";
             tb_Key_Q.Text = "";
@@ -409,6 +412,7 @@ namespace CryptographicApplication
             transition = false;
 
             Grid_Main_Key_Menu.Visibility = Visibility.Visible;
+            menu_btn_SaveFileAs_Key.IsEnabled = true;
 
             if (rb_Encryption.IsChecked == true)
             {
@@ -535,6 +539,7 @@ namespace CryptographicApplication
         {
             try
             {
+                tb_Key.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
                 switch (cb_Algorithms.SelectedIndex)
                 {
                     case -1: cb_Algorithms_Border.Background = Brushes.Red; break;
@@ -557,6 +562,7 @@ namespace CryptographicApplication
             if (a == true)
             {
                 transition = true;
+                menu_btn_SaveFileAs_Key.IsEnabled = false;
                 Grid_Main_Key_Menu.Visibility = Visibility.Collapsed;
                 Grid_Generation_Key_Menu_1.Visibility = Visibility.Visible;
                 Grid_Generation_Key_Menu_2.Visibility = Visibility.Collapsed;
@@ -564,6 +570,7 @@ namespace CryptographicApplication
             else
             {
                 transition = true;
+                menu_btn_SaveFileAs_Key.IsEnabled = false;
                 Grid_Main_Key_Menu.Visibility = Visibility.Collapsed;
                 Grid_Generation_Key_Menu_1.Visibility = Visibility.Collapsed;
                 Grid_Generation_Key_Menu_2.Visibility = Visibility.Visible;
@@ -737,6 +744,7 @@ namespace CryptographicApplication
             tb_EncryptedData.FontSize = 12;
 
             //ключ
+            menu_btn_SaveFileAs_Key.IsEnabled = true;
             tb_Key.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             tb_Key.Text = "";
             tb_Key.FontSize = 12;
@@ -797,7 +805,7 @@ namespace CryptographicApplication
                 case Key.F6: if (tb_FileName_Source.Text != "") func_obj.Save_File(tb_FileName_Source, tb_SourceData); break; //сохранить
                 case Key.F7: func_obj.Save_File_As(tb_FileName_Source, tb_SourceData); break;  //сохранить исходный текст
                 case Key.F8: func_obj.Save_File_As(cb_Algorithms, tb_EncryptedData, rb_Encryption, true); break;  //сохранить зашифрованный/дешифрованный текст
-                case Key.F9: func_obj.Save_File_As(cb_Algorithms, tb_Key, rb_Encryption, false); break;  //сохранить ключ
+                case Key.F9: if (Grid_Main_Key_Menu.Visibility == Visibility.Visible) func_obj.Save_File_As(cb_Algorithms, tb_Key, rb_Encryption, false); break;  //сохранить ключ
                 case Key.F11: Calling_Help(); break;  //о программе
                 case Key.F12: this.Close(); break; //выход
             }
@@ -825,6 +833,7 @@ namespace CryptographicApplication
             Grid_Generation_Key_Menu_2.Visibility = Visibility.Collapsed;
 
             cb_Algorithms_Border.Background = this.Background;
+            menu_btn_SaveFileAs_Key.IsEnabled = true; //разблокировать кнопку сохранение ключа в меню
             func_obj.Changed_CB(cb_Algorithms, btn_Key_Generation, menu_btn_Key_Generation); //разблокирует или блокирует кнопку "Сгенерировать ключ"
         }
 
