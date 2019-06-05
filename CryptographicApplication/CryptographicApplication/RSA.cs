@@ -48,15 +48,12 @@ namespace CryptographicApplication
             SetKey(_key.Split(' '));
         }
 
-        public string Encrypt(string sourcetext) //генерация ключа
+        public string Encrypt(string sourcetext)
         {
             StringBuilder code = new StringBuilder();
 
             long e = Convert.ToInt64(key[0]);
             long n = Convert.ToInt64(key[1]);
-
-            MessageBox.Show(Convert.ToString(key[0]));
-            MessageBox.Show(Convert.ToString(key[1]));
 
             List<string> result = RSA_Endoce(sourcetext, e, n);
 
@@ -131,7 +128,7 @@ namespace CryptographicApplication
             return result;
         }
 
-        public bool IsTheNumberSimple(long n) //является ли число простым
+        public bool IsTheNumberSimple(int n) //является ли число простым
         {
             if (n < 2)
                 return false;

@@ -159,7 +159,7 @@ namespace CryptographicApplication
         {
             if (a.Text == "")
             {
-                a.Foreground = Brushes.Gray;
+                a.Foreground = new SolidColorBrush(Color.FromRgb(171, 173, 179));
                 switch (b)
                 {
                     case 0: a.Text = "Введите размер ключа"; break;
@@ -182,6 +182,20 @@ namespace CryptographicApplication
             if (e.Key == Key.Space)
             {
                 e.Handled = true;
+            }
+        }
+
+        public int Check(int value, TextBox a)
+        {
+            try
+            {
+                value = Convert.ToInt32(a.Text);
+                return value;
+            }
+            catch (Exception)
+            {
+                a.BorderBrush = Brushes.Red;
+                return 0;
             }
         }
     }

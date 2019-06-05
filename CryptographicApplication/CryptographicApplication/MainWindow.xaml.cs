@@ -275,6 +275,11 @@ namespace CryptographicApplication
             func_obj.Font_Size(tb_Key, false);
         }
 
+        private void Tb_Key_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tb_Key.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+        }
+
         #endregion
 
         #region Меню для генерации ключей с выбором размера
@@ -331,6 +336,11 @@ namespace CryptographicApplication
         private void Tb_Key_Size_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             func_obj.Only_Number(e);
+        }
+
+        private void Tb_Key_Size_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tb_Key_Size.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
         }
 
         private void Tb_Key_1_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -441,6 +451,16 @@ namespace CryptographicApplication
             func_obj.Сheck_the_Сursor(tb_Key_P, 2);
         }
 
+        private void Tb_Key_P_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tb_Key_P.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+        }
+
+        private void Tb_Key_Q_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tb_Key_Q.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+        }
+
         private void Tb_Key_Q_LostFocus(object sender, RoutedEventArgs e)
         {
             func_obj.Сheck_the_Сursor(tb_Key_Q, 3);
@@ -513,15 +533,22 @@ namespace CryptographicApplication
 
         public void List_of_Operations_to_Perform() //меню, определяющее какой метод выполнять
         {
-            switch (cb_Algorithms.SelectedIndex)
+            try
             {
-                case -1: cb_Algorithms_Border.Background = Brushes.Red; break;
-                case 0: Transposition_Cipher(); break;
-                case 1: Monoalphabetic_Cipher(); break;
-                case 2: Polyalphabetic_Cipher(); break;
-                case 3: XOR_Cipher(); break;
-                case 4: Vernam_Cipher(); break;
-                case 5: RSA_Cipher(); break;
+                switch (cb_Algorithms.SelectedIndex)
+                {
+                    case -1: cb_Algorithms_Border.Background = Brushes.Red; break;
+                    case 0: Transposition_Cipher(); break;
+                    case 1: Monoalphabetic_Cipher(); break;
+                    case 2: Polyalphabetic_Cipher(); break;
+                    case 3: XOR_Cipher(); break;
+                    case 4: Vernam_Cipher(); break;
+                    case 5: RSA_Cipher(); break;
+                }
+            }
+            catch (Exception)
+            {
+                tb_Key.BorderBrush = Brushes.Red;
             }
         }
 
@@ -599,37 +626,77 @@ namespace CryptographicApplication
 
         public void Key_Generation_Selection() //меню, для выбора генерации ключей
         {
-            switch (cb_Algorithms.SelectedIndex)
+            try
             {
-                case 0:
-                    tb_Key_1.Foreground = Brushes.Black;
-                    tb_Key_1.Text = rndkey_obj.Rand_Key_Generation_Transposition(Convert.ToInt32(tb_Key_Size.Text));
-                    break;
+                switch (cb_Algorithms.SelectedIndex)
+                {
+                    case 0:
+                        tb_Key_1.Text = rndkey_obj.Rand_Key_Generation_Transposition(Convert.ToInt32(tb_Key_Size.Text));
+                        tb_Key_1.Foreground = Brushes.Black;
+                        break;
 
-                case 1: tb_Key.Text = rndkey_obj.Rand_Key_Generation(); break;
-                case 2:
-                    tb_Key_1.Foreground = Brushes.Black;
-                    tb_Key_1.Text = rndkey_obj.Rand_Key_Generation(Convert.ToInt32(tb_Key_Size.Text));
-                    break;
+                    case 1: tb_Key.Text = rndkey_obj.Rand_Key_Generation(); break;
+                    case 2:
+                        tb_Key_1.Text = rndkey_obj.Rand_Key_Generation(Convert.ToInt32(tb_Key_Size.Text));
+                        tb_Key_1.Foreground = Brushes.Black;
+                        break;
 
-                case 3:
-                    tb_Key_1.Foreground = Brushes.Black;
-                    tb_Key_1.Text = rndkey_obj.Rand_Key_Generation(Convert.ToInt32(tb_Key_Size.Text));
-                    break;
+                    case 3:
+                        tb_Key_1.Text = rndkey_obj.Rand_Key_Generation(Convert.ToInt32(tb_Key_Size.Text));
+                        tb_Key_1.Foreground = Brushes.Black;
+                        break;
 
-                case 4: tb_Key.Text = rndkey_obj.Rand_Key_Generation(tb_SourceData.Text.Length); break;
-                case 5:
-                    tb_Public_Key.Foreground = Brushes.Black;
-                    tb_Privat_Key.Foreground = Brushes.Black;
+                    case 4: tb_Key.Text = rndkey_obj.Rand_Key_Generation(tb_SourceData.Text.Length); break;
+                    case 5:
+                        int p = 0, q = 0, i = 0;
 
-                    long n = Convert.ToInt32(tb_Key_P.Text) * Convert.ToInt32(tb_Key_Q.Text);
-                    long fi = (Convert.ToInt32(tb_Key_P.Text) - 1) * (Convert.ToInt32(tb_Key_Q.Text) - 1);
-                    long e = rsa_obj.Calculate_e(fi);
-                    long d = rsa_obj.Calculate_d(e, fi);
+                        p = func_obj.Check(p, tb_Key_P);
+                        q = func_obj.Check(q, tb_Key_Q);
 
-                    tb_Public_Key.Text = Convert.ToString(e) + " " + Convert.ToString(n);
-                    tb_Privat_Key.Text = Convert.ToString(d) + " " + Convert.ToString(n);
-                    break;
+                        if (p > 10 && p != q && rsa_obj.IsTheNumberSimple(p))
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            tb_Key_P.BorderBrush = Brushes.Red;
+                        }
+
+                        if (q > 10 && q != p && rsa_obj.IsTheNumberSimple(q))
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            tb_Key_Q.BorderBrush = Brushes.Red;
+                        }
+
+                        if (i == 2)
+                        {
+                            tb_Key_P.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+                            tb_Key_Q.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+
+                            long n = p * q;
+                            long fi = (p - 1) * (q - 1);
+                            long e = rsa_obj.Calculate_e(fi);
+                            long d = rsa_obj.Calculate_d(e, fi);
+
+                            tb_Public_Key.Foreground = Brushes.Black;
+                            tb_Privat_Key.Foreground = Brushes.Black;
+
+                            tb_Public_Key.Text = Convert.ToString(e) + " " + Convert.ToString(n);
+                            tb_Privat_Key.Text = Convert.ToString(d) + " " + Convert.ToString(n);
+                        }
+                        
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                if (cb_Algorithms.SelectedIndex == 0 || cb_Algorithms.SelectedIndex == 2 || cb_Algorithms.SelectedIndex == 3)
+                {
+                    tb_Key_Size.BorderBrush = Brushes.Red;
+                }
             }
         }
 
@@ -670,16 +737,20 @@ namespace CryptographicApplication
             tb_EncryptedData.FontSize = 12;
 
             //ключ
+            tb_Key.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             tb_Key.Text = "";
             tb_Key.FontSize = 12;
 
             //генарация ключа с вводом размера
+            tb_Key_Size.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             tb_Key_Size.Text = "";
             tb_Key_1.Text = "";
             func_obj.Сheck_the_Сursor(tb_Key_Size, 0);
             func_obj.Сheck_the_Сursor(tb_Key_1, 1);
 
             //генарация ключа RSA
+            tb_Key_P.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
+            tb_Key_Q.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
             tb_Key_P.Text = "";
             tb_Key_Q.Text = "";
             tb_Public_Key.Text = "";
@@ -688,7 +759,6 @@ namespace CryptographicApplication
             func_obj.Сheck_the_Сursor(tb_Key_Q, 3);
             func_obj.Сheck_the_Сursor(tb_Public_Key, 4);
             func_obj.Сheck_the_Сursor(tb_Privat_Key, 5);
-
 
             Grid_Main_Key_Menu.Visibility = Visibility.Visible;
             Grid_Generation_Key_Menu_1.Visibility = Visibility.Collapsed;
