@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using Microsoft.Win32;
 using System.Diagnostics;
 
 namespace CryptographicApplication
@@ -39,18 +29,9 @@ namespace CryptographicApplication
 
         #endregion
 
-        /*public void Design(GroupBox a)
-        {
-            a.Background = SystemParameters.WindowGlassBrush;
-        }*/
-
         public MainWindow()
         {
             InitializeComponent();
-
-            /*List<Button> buttons = new List<Button> { };
-
-            //Design(GroupBox a)*/
 
             rb_Encryption.IsChecked = true;
             func_obj = new Functional();
@@ -233,6 +214,15 @@ namespace CryptographicApplication
         private void Tb_SourceData_TextChanged(object sender, TextChangedEventArgs e)
         {
             tb_EncryptedData.Text = "";
+
+            if (tb_SourceData.Text == "")
+            {
+                tb_SourceData.ToolTip = "Введите текст";
+            }
+            else
+            {
+                tb_SourceData.ToolTip = "Исходный текст";
+            }
         }
 
         #endregion
@@ -257,6 +247,18 @@ namespace CryptographicApplication
         private void Btn_Reduce_Encrypted_Click(object sender, RoutedEventArgs e)
         {
             func_obj.Font_Size(tb_EncryptedData, false);
+        }
+
+        private void Tb_EncryptedData_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tb_EncryptedData.Text == "")
+            {
+                tb_EncryptedData.ToolTip = "Выполните операцию";
+            }
+            else
+            {
+                tb_EncryptedData.ToolTip = "Результат выполнения операции";
+            }
         }
 
         #endregion
@@ -292,6 +294,15 @@ namespace CryptographicApplication
 
         private void Tb_Key_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (tb_Key.Text == "")
+            {
+                tb_Key.ToolTip = "Введите ключ";
+            }
+            else
+            {
+                tb_Key.ToolTip = "Ваш ключ";
+            }
+
             tb_Key.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
         }
 
@@ -579,18 +590,13 @@ namespace CryptographicApplication
                     case 5: RSA_Cipher(); break;
                 }
 
-                if (chb_SaveText.IsChecked == true)
-                {
-                    func_obj.Save_File_As(cb_Algorithms, tb_EncryptedData, rb_Encryption, true);
-                }
+                Additional_Func();
+                //tb_Key.ToolTip = "Ваш ключ";
 
-                if (chb_SaveKey.IsChecked == true)
-                {
-                    func_obj.Save_File_As(cb_Algorithms, tb_Key, rb_Encryption, false);
-                }
             }
             catch (Exception)
             {
+                tb_Key.ToolTip = "Неверный ключ";
                 tb_Key.BorderBrush = Brushes.Red;
             }
         }
@@ -789,7 +795,9 @@ namespace CryptographicApplication
 
             //Дополнительные действия
             chb_SaveKey.IsChecked = false;
-            chb_SaveText.IsChecked = false;
+            chb_SaveEncryptText.IsChecked = false;
+            chb_SaveSourceText.IsChecked = false;
+            chb_Refresh.IsChecked = false;
 
             //генарация ключа с вводом размера
             tb_Key_Size.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
@@ -813,6 +821,29 @@ namespace CryptographicApplication
             Grid_Main_Key_Menu.Visibility = Visibility.Visible;
             Grid_Generation_Key_Menu_1.Visibility = Visibility.Collapsed;
             Grid_Generation_Key_Menu_2.Visibility = Visibility.Collapsed;
+        }
+
+        public void Additional_Func()
+        {
+            if (chb_SaveSourceText.IsChecked == true)
+            {
+                func_obj.Save_File_As(tb_FileName_Source, tb_SourceData);
+            }
+
+            if (chb_SaveEncryptText.IsChecked == true)
+            {
+                func_obj.Save_File_As(cb_Algorithms, tb_EncryptedData, rb_Encryption, true);
+            }
+
+            if (chb_SaveKey.IsChecked == true)
+            {
+                func_obj.Save_File_As(cb_Algorithms, tb_Key, rb_Encryption, false);
+            }
+
+            if (chb_Refresh.IsChecked == true)
+            {
+                Refresh();
+            }
         }
 
         public void Unlock_Btn()
@@ -882,14 +913,14 @@ namespace CryptographicApplication
         private void Rb_Encryption_Checked(object sender, RoutedEventArgs e)
         {
             gb_algs.Header = "Способ шифрования";
-            chb_SaveText.Content = "Сохранить зашифрованный текст";
+            chb_SaveEncryptText.Content = "Сохранить зашифрованный текст";
             menu_btn_SaveFileAs_Encrypted.Header = "Сохранить зашифрованный текст";
         }
 
         private void Rb_Decryption_Checked(object sender, RoutedEventArgs e)
         {
             gb_algs.Header = "Способ дешифрования";
-            chb_SaveText.Content = "Сохранить дешифрованный текст";
+            chb_SaveEncryptText.Content = "Сохранить дешифрованный текст";
             menu_btn_SaveFileAs_Encrypted.Header = "Сохранить дешифрованный текст";
         }
 

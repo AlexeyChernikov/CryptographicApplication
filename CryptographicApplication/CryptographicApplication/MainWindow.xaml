@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptographicApplication"
         mc:Ignorable="d"
-        Title="Криптографическое приложение" Height="737" Width="538" WindowStartupLocation="CenterScreen" Icon="logo.png" ResizeMode="NoResize" KeyDown="Window_KeyDown" Closing="Window_Closing" Background="#FFF0F0F0" FontFamily="Times New Roman" FontSize="14">
+        Title="Криптографическое приложение" Height="755" Width="538" WindowStartupLocation="CenterScreen" Icon="logo.png" ResizeMode="NoResize" KeyDown="Window_KeyDown" Closing="Window_Closing" Background="#FFF0F0F0" FontFamily="Times New Roman" FontSize="14">
     <Grid>
         <Menu Height="25" VerticalAlignment="Top" Background="#FFDDDDDD" FontFamily="Times New Roman" FontSize="14" Grid.ColumnSpan="2">
             <MenuItem Header="Файл">
@@ -42,7 +42,11 @@
                         <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выбрать файл"/>
                     </Button.ToolTip>
                 </Button>
-                <TextBox x:Name="tb_SourceData" Margin="10,30,3,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top" TextChanged="Tb_SourceData_TextChanged"/>
+                <TextBox x:Name="tb_SourceData" Margin="10,30,3,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top" TextChanged="Tb_SourceData_TextChanged">
+                    <TextBox.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Введите текст"/>
+                    </TextBox.ToolTip>
+                </TextBox>
                 <Button x:Name="btn_Clear_Source" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,110,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Source_Click">
                     <Button.ToolTip>
                         <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Очистить поле с исходным текстом"/>
@@ -60,7 +64,7 @@
                 </Button>
                 <Button x:Name="btn_SaveFile_Source" Content="Сохранить" HorizontalAlignment="Left" Height="25" Margin="10,110,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFile_Source_Click" IsEnabled="False">
                     <Button.ToolTip>
-                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сохранить исходный текст"/>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Перезаписать текст в выбранный файл"/>
                     </Button.ToolTip>
                 </Button>
                 <Button x:Name="btn_SaveFileAs_Source" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="125,110,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Source_Click">
@@ -70,10 +74,14 @@
                 </Button>
             </Grid>
         </GroupBox>
-        <Button x:Name="btn_ExecuteOperation" Content="Выполнить" HorizontalAlignment="Left" Height="30" Margin="206,653,0,0" VerticalAlignment="Top" Width="120" Click="Btn_ExecuteOperation_Click" FontSize="16" Grid.ColumnSpan="2"/>
+        <Button x:Name="btn_ExecuteOperation" Content="Выполнить" HorizontalAlignment="Left" Height="30" Margin="206,671,0,0" VerticalAlignment="Top" Width="120" Click="Btn_ExecuteOperation_Click" FontSize="16" Grid.ColumnSpan="2"/>
         <GroupBox Header="Результат" HorizontalAlignment="Left" Height="143" Margin="13,337,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <Grid Margin="0,6,-2,2">
-                <TextBox x:Name="tb_EncryptedData" Margin="10,0,12,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top"/>
+                <TextBox x:Name="tb_EncryptedData" Margin="10,0,12,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top" TextChanged="Tb_EncryptedData_TextChanged">
+                    <TextBox.ToolTip>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выполните операцию"/>
+                    </TextBox.ToolTip>
+                </TextBox>
                 <Button x:Name="btn_Clear_Encrypted" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,80,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Encrypted_Click">
                     <Button.ToolTip>
                         <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Очистить поле с результатом"/>
@@ -125,7 +133,11 @@
                             <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выбрать файл"/>
                         </Button.ToolTip>
                     </Button>
-                    <TextBox x:Name="tb_Key" Margin="45,0,12,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" TextChanged="Tb_Key_TextChanged"/>
+                    <TextBox x:Name="tb_Key" Margin="45,0,12,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" TextChanged="Tb_Key_TextChanged">
+                        <TextBox.ToolTip>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Введите ключ"/>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Button x:Name="btn_SaveFileAs_Key" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Key_Click">
                         <Button.ToolTip>
                             <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сохранить ключ в новый файл"/>
@@ -202,10 +214,12 @@
                 </Grid>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Дополнительные действия" HorizontalAlignment="Left" Height="56" Margin="13,583,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
+        <GroupBox Header="Дополнительные действия" HorizontalAlignment="Left" Height="74" Margin="13,583,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <Grid Margin="0,0,-2,4">
-                <CheckBox x:Name="chb_SaveText" Content="Сохранить зашифрованный текст" HorizontalAlignment="Left" Height="19" Margin="215,8,0,0" VerticalAlignment="Top" Width="223" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <CheckBox x:Name="chb_SaveKey" Content="Сохранить ключ" HorizontalAlignment="Left" Height="19" Margin="51,8,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <CheckBox x:Name="chb_SaveEncryptText" Content="Сохранить зашифрованный текст" HorizontalAlignment="Left" Height="19" Margin="235,3,0,0" VerticalAlignment="Top" Width="223" VerticalContentAlignment="Center"/>
+                <CheckBox x:Name="chb_SaveKey" Content="Сохранить ключ" HorizontalAlignment="Left" Height="19" Margin="235,27,0,0" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
+                <CheckBox x:Name="chb_SaveSourceText" Content="Сохранить исходный текст" HorizontalAlignment="Left" Height="19" Margin="28,27,0,0" VerticalAlignment="Top" Width="185" VerticalContentAlignment="Center"/>
+                <CheckBox x:Name="chb_Refresh" Content="Обновить все поля" HorizontalAlignment="Left" Height="19" Margin="28,3,0,0" VerticalAlignment="Top" Width="185" VerticalContentAlignment="Center"/>
             </Grid>
         </GroupBox>
     </Grid>

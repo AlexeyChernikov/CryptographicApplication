@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CryptographicApplication
 {
@@ -23,7 +20,6 @@ namespace CryptographicApplication
                     if (sourcetext[i] == alph.lang[j])
                     {
                         code.Append(alph.lang[(j + shift) % alph.lang.Length]);
-
                         break;
                     }
                     //если символ не найден
