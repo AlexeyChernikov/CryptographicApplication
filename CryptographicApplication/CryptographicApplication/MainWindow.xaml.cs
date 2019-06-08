@@ -214,15 +214,6 @@ namespace CryptographicApplication
         private void Tb_SourceData_TextChanged(object sender, TextChangedEventArgs e)
         {
             tb_EncryptedData.Text = "";
-
-            if (tb_SourceData.Text == "")
-            {
-                tb_SourceData.ToolTip = "Введите текст";
-            }
-            else
-            {
-                tb_SourceData.ToolTip = "Исходный текст";
-            }
         }
 
         #endregion
@@ -247,18 +238,6 @@ namespace CryptographicApplication
         private void Btn_Reduce_Encrypted_Click(object sender, RoutedEventArgs e)
         {
             func_obj.Font_Size(tb_EncryptedData, false);
-        }
-
-        private void Tb_EncryptedData_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (tb_EncryptedData.Text == "")
-            {
-                tb_EncryptedData.ToolTip = "Выполните операцию";
-            }
-            else
-            {
-                tb_EncryptedData.ToolTip = "Результат выполнения операции";
-            }
         }
 
         #endregion
@@ -294,15 +273,6 @@ namespace CryptographicApplication
 
         private void Tb_Key_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (tb_Key.Text == "")
-            {
-                tb_Key.ToolTip = "Введите ключ";
-            }
-            else
-            {
-                tb_Key.ToolTip = "Ваш ключ";
-            }
-
             tb_Key.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
         }
 

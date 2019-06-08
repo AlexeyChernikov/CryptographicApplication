@@ -42,11 +42,7 @@
                         <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выбрать файл"/>
                     </Button.ToolTip>
                 </Button>
-                <TextBox x:Name="tb_SourceData" Margin="10,30,3,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top" TextChanged="Tb_SourceData_TextChanged">
-                    <TextBox.ToolTip>
-                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Введите текст"/>
-                    </TextBox.ToolTip>
-                </TextBox>
+                <TextBox x:Name="tb_SourceData" Margin="10,30,3,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top" TextChanged="Tb_SourceData_TextChanged"/>
                 <Button x:Name="btn_Clear_Source" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,110,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Source_Click">
                     <Button.ToolTip>
                         <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Очистить поле с исходным текстом"/>
@@ -54,12 +50,12 @@
                 </Button>
                 <Button x:Name="btn_Increase_Source" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,110,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Source_Click">
                     <Button.ToolTip>
-                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер текста"/>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер шрифта"/>
                     </Button.ToolTip>
                 </Button>
                 <Button x:Name="btn_Reduce_Source" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,110,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Source_Click">
                     <Button.ToolTip>
-                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер текста"/>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер шрифта"/>
                     </Button.ToolTip>
                 </Button>
                 <Button x:Name="btn_SaveFile_Source" Content="Сохранить" HorizontalAlignment="Left" Height="25" Margin="10,110,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFile_Source_Click" IsEnabled="False">
@@ -77,11 +73,7 @@
         <Button x:Name="btn_ExecuteOperation" Content="Выполнить" HorizontalAlignment="Left" Height="30" Margin="206,671,0,0" VerticalAlignment="Top" Width="120" Click="Btn_ExecuteOperation_Click" FontSize="16" Grid.ColumnSpan="2"/>
         <GroupBox Header="Результат" HorizontalAlignment="Left" Height="143" Margin="13,337,0,0" VerticalAlignment="Top" Width="495" BorderBrush="#FFABADB3" Background="#FFF9F9F9" Grid.ColumnSpan="2">
             <Grid Margin="0,6,-2,2">
-                <TextBox x:Name="tb_EncryptedData" Margin="10,0,12,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top" TextChanged="Tb_EncryptedData_TextChanged">
-                    <TextBox.ToolTip>
-                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выполните операцию"/>
-                    </TextBox.ToolTip>
-                </TextBox>
+                <TextBox x:Name="tb_EncryptedData" Margin="10,0,12,0" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="75" VerticalAlignment="Top"/>
                 <Button x:Name="btn_Clear_Encrypted" Content="Очистить" HorizontalAlignment="Left" Height="25" Margin="325,80,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Clear_Encrypted_Click">
                     <Button.ToolTip>
                         <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Очистить поле с результатом"/>
@@ -89,12 +81,12 @@
                 </Button>
                 <Button x:Name="btn_Increase_Encrypted" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,80,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Encrypted_Click">
                     <Button.ToolTip>
-                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер текста"/>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер шрифта"/>
                     </Button.ToolTip>
                 </Button>
                 <Button x:Name="btn_Reduce_Encrypted" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,80,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Encrypted_Click">
                     <Button.ToolTip>
-                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер текста"/>
+                        <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер шрифта"/>
                     </Button.ToolTip>
                 </Button>
                 <Button x:Name="btn_SaveFileAs_Encrypted" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="10,80,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Encrypted_Click">
@@ -133,11 +125,7 @@
                             <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Выбрать файл"/>
                         </Button.ToolTip>
                     </Button>
-                    <TextBox x:Name="tb_Key" Margin="45,0,12,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" TextChanged="Tb_Key_TextChanged">
-                        <TextBox.ToolTip>
-                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Введите ключ"/>
-                        </TextBox.ToolTip>
-                    </TextBox>
+                    <TextBox x:Name="tb_Key" Margin="45,0,12,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" TextChanged="Tb_Key_TextChanged"/>
                     <Button x:Name="btn_SaveFileAs_Key" Content="Сохранить как" HorizontalAlignment="Left" Height="25" Margin="10,30,0,0" VerticalAlignment="Top" Width="110" Click="Btn_SaveFileAs_Key_Click">
                         <Button.ToolTip>
                             <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Сохранить ключ в новый файл"/>
@@ -155,12 +143,12 @@
                     </Button>
                     <Button x:Name="btn_Increase_Key" Content="+" HorizontalAlignment="Left" Height="25" Margin="408,30,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Increase_Key_Click">
                         <Button.ToolTip>
-                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер текста"/>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Увеличить размер шрифта"/>
                         </Button.ToolTip>
                     </Button>
                     <Button x:Name="btn_Reduce_Key" Content="-" HorizontalAlignment="Left" Height="25" Margin="443,30,0,0" VerticalAlignment="Top" Width="30" Click="Btn_Reduce_Key_Click">
                         <Button.ToolTip>
-                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер текста"/>
+                            <ToolTip Background="#FFF9F9F9" FontFamily="Times New Roman" FontSize="13" Content="Уменьшить размер шрифта"/>
                         </Button.ToolTip>
                     </Button>
                 </Grid>
